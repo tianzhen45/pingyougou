@@ -27,6 +27,18 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 设置SQL映射文件 -->
         <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect = mysql
+                            reasonable = true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- 配置数据访问接口的代理对象 (批量配置)

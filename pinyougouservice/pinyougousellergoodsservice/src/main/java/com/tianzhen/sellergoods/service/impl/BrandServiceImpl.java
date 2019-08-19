@@ -1,6 +1,8 @@
 package com.tianzhen.sellergoods.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tianzhen.mapper.BrandMapper;
 import com.tianzhen.pojo.Brand;
 import com.tianzhen.service.BrandService;
@@ -17,6 +19,31 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public List<Brand> findAll() {
+
         return brandMapper.findAll();
+
     }
+
+    @Override
+    public void save(Brand brand) {
+        brandMapper.insertSelective(brand);
+    }
+
+    @Override
+    public void update(Brand brand) {
+        brandMapper.updateByPrimaryKeySelective(brand);
+    }
+
+    @Override
+    public PageInfo<Brand> findByPage(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        return new PageInfo<Brand>(brandMapper.findAll());
+    }
+
+    @Override
+    public void delete(Integer id) {
+        brandMapper.deleteByPrimaryKey(id.longValue());
+    }
+
+
 }
