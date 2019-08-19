@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service(interfaceName = "com.tianzhen.service.BrandService")
 @Transactional
@@ -43,6 +44,11 @@ public class BrandServiceImpl implements BrandService{
     @Override
     public void delete(Integer id) {
         brandMapper.deleteByPrimaryKey(id.longValue());
+    }
+
+    @Override
+    public List<Map<String, Object>> findAllByIdAndName() {
+        return brandMapper.findAllByIdAndName();
     }
 
 

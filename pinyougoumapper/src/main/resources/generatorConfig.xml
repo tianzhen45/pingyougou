@@ -66,10 +66,10 @@
         </javaClientGenerator>
 
 
-        <table tableName="tb_brand" domainObjectName="Brand"
+        <table tableName="tb_type_template" domainObjectName="TypeTemplate"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-               mapperName="BrandMapper"/>
+               mapperName="TypeTemplateMapper"/>
 
 
         <!-- mybatis插件的搭建 -->

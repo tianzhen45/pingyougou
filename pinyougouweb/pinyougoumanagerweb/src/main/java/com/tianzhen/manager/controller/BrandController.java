@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/brand")
@@ -33,7 +34,7 @@ public class BrandController {
     }
 
     @GetMapping("/findByPage")
-    public PageInfo<Brand> findByPage(int pageNum,@RequestParam(defaultValue = "5") int pageSize){
+    public PageInfo<Brand> findByPage(@RequestParam(defaultValue = "1")int pageNum,@RequestParam(defaultValue = "5") int pageSize){
 
         return brandService.findByPage(pageNum,pageSize);
     }
@@ -46,7 +47,11 @@ public class BrandController {
         return "ok";
     }
 
-        
+    @GetMapping("/findAllByIdAndName")
+    public List<Map<String, Object>> findAllByIdAndName(){
+        List<Map<String, Object>> all = brandService.findAllByIdAndName();
+        return all;
+    }
 
 }
 

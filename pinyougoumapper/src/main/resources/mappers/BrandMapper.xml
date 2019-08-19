@@ -18,6 +18,10 @@
   <select id="findAll" resultType="com.tianzhen.pojo.Brand">
     SELECT * FROM tb_brand ORDER BY id ASC
   </select>
+  <select id="findAllByIdAndName" resultType="java.util.Map">
+    SELECT id,name as text FROM tb_brand ORDER BY id ASC
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_brand
     where id = #{id,jdbcType=BIGINT}

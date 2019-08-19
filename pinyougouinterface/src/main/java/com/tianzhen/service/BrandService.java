@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.tianzhen.pojo.Brand;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BrandService {
 
@@ -16,4 +17,6 @@ public interface BrandService {
     PageInfo<Brand> findByPage(int pageNum,int pageSize);
 
     void delete(Integer id);
+
+    List<Map<String,Object>> findAllByIdAndName();
 }
