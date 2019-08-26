@@ -66,10 +66,10 @@
         </javaClientGenerator>
 
 
-        <table tableName="tb_item_cat" domainObjectName="ItemCategory"
+        <table tableName="tb_seller" domainObjectName="Seller"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-               mapperName="ItemCategoryMapper"/>
+               mapperName="SellerMapper"/>
 
 
         <!-- mybatis插件的搭建 -->
