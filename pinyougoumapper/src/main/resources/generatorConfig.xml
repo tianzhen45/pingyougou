@@ -66,11 +66,18 @@
         </javaClientGenerator>
 
 
-        <table tableName="tb_seller" domainObjectName="Seller"
+        <table tableName="tb_goods" domainObjectName="Goods"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-               mapperName="SellerMapper"/>
-
+               mapperName="GoodsMapper"/>
+        <table tableName="tb_goods_desc" domainObjectName="GoodsDesc"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
+               mapperName="GoodsDescMapper"/>
+        <table tableName="tb_item" domainObjectName="Item"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
+               mapperName="ItemMapper"/>
 
         <!-- mybatis插件的搭建 -->
     </context>
