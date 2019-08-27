@@ -66,18 +66,12 @@
         </javaClientGenerator>
 
 
-        <table tableName="tb_goods" domainObjectName="Goods"
+
+        <table tableName="tb_content_category" domainObjectName="ContentCategory"
                enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-               mapperName="GoodsMapper"/>
-        <table tableName="tb_goods_desc" domainObjectName="GoodsDesc"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-               mapperName="GoodsDescMapper"/>
-        <table tableName="tb_item" domainObjectName="Item"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
-               mapperName="ItemMapper"/>
+               enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false"
+               mapperName="ContentCategoryMapper"/>
+
 
         <!-- mybatis插件的搭建 -->
     </context>
