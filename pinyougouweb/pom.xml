@@ -17,6 +17,7 @@
     <modules>
         <module>pinyougoumanagerweb</module>
         <module>pinyougoushopweb</module>
+        <module>pinyougouportalweb</module>
     </modules>
 
     <properties>
