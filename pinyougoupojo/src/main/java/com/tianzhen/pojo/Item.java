@@ -51,6 +51,9 @@ public class Item implements Serializable{
 
     private String seller;
 
+
+
+
     public Long getId() {
         return id;
     }

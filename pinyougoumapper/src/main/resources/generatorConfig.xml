@@ -67,10 +67,10 @@
 
 
 
-        <table tableName="tb_content_category" domainObjectName="ContentCategory"
+        <table tableName="tb_item" domainObjectName="Item"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false"
-               mapperName="ContentCategoryMapper"/>
+               mapperName="ItemMapper"/>
 
 
         <!-- mybatis插件的搭建 -->

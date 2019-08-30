@@ -15,6 +15,7 @@
     <modules>
         <module>pinyougousellergoodsservice</module>
         <module>pinyougoucontentservice</module>
+        <module>pinyougousearchservice</module>
     </modules>
 
     <properties>

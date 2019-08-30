@@ -13,6 +13,7 @@
         <module>pinyougouinterface</module>
         <module>pinyougouservice</module>
         <module>pinyougouweb</module>
+        <module>pinyougouesimport</module>
     </modules>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
