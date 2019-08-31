@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch.xsd">
+
+
+    <!-- ############## 配置dubbo服务提供者 ############## -->
+    <!-- 配置当前应用的名称 -->
+    <dubbo:application name="pinyougou-content-service"/>
+    <!-- 配置zookeeper作为注册中心，注册服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20882"/>
+    <!-- 配置采用包扫描来暴露服务 -->
+    <dubbo:annotation package="com.tianzhen.search.service.impl"/>
+
+
+
+    <!-- 2.配置Elasticsearch客户端连接对象
+      cluster-nodes: 集群中的节点
+      cluster-name: 集群的名称
+   -->
+    <elasticsearch:transport-client id="client"
+                                    cluster-nodes="localhost:9300"
+                                    cluster-name="cluster-es"/>
+
+    <!-- 1.配置ElasticsearchTemplate模板对象 -->
+    <bean id="elasticsearchTemplate"
+          class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
+        <!-- 设置客户端连接对象 -->
+        <constructor-arg name="client" ref="client"/>
+    </bean>
+
+    <!-- 3.配置Elasticsearch数据访问接口，采用包扫描 -->
+    <elasticsearch:repositories base-package="com.tianzhen.search.dao"/>
+
+
+</beans>

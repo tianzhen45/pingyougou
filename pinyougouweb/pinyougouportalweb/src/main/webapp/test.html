@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+</head>
+<body>
+
+<img src="http://localhost:6080/img/ad.jpg" />
+<h2>sdkjhasjkldhas</h2>
+<ol>
+    <li v-for="i in dataList">
+        {{i.name}}
+    </li>
+
+</ol>
+
+<script type="text/javascript">
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            dataList:[]
+        },
+        methods:{
+            go:function () {
+                axios.get("http://localhost:6080/findItemCatByParentId?id=1").then(
+                    function (response) {
+                        vue.dataList = response.data;
+                    }
+                );
+            }
+
+        },
+        created:function () {
+            this.go();
+        }
+
+    });
+
+</script>
+</body>
+</html>
