@@ -3,6 +3,8 @@ package com.tianzhen.service;
 import com.github.pagehelper.PageInfo;
 import com.tianzhen.pojo.Goods;
 
+import java.util.Map;
+
 public interface GoodsService {
 
     void save(Goods goods);
@@ -12,4 +14,8 @@ public interface GoodsService {
     void update(Goods goods);
 
     void deleteLogic(String id);
+
+    Goods findById(Long goodsId);
+
+    Map<String,Object> getGoods(Long goodsId);
 }

@@ -5,14 +5,13 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tianzhen.mapper.*;
-import com.tianzhen.pojo.Goods;
-import com.tianzhen.pojo.GoodsExample;
-import com.tianzhen.pojo.Item;
+import com.tianzhen.pojo.*;
 import com.tianzhen.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -146,6 +145,51 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public void deleteLogic(String id) {
         goodsMapper.deleteLogic(id);
+    }
+
+    @Override
+    public Goods findById(Long goodsId) {
+        return goodsMapper.selectByPrimaryKey(goodsId);
+    }
+
+    @Override
+    public Map<String, Object> getGoods(Long goodsId) {
+        Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+        GoodsDesc goodsDesc = goodsDescMapper.selectByPrimaryKey(goodsId);
+        Map<String,Object> data = new HashMap<>();
+
+        //商品分类
+        if(goods != null && goods.getCategory1Id() != null){
+            String itemCat1 = itemCategoryMapper.selectByPrimaryKey(goods.getCategory1Id()).getName();
+            data.put("itemCat1",itemCat1);
+        }
+
+        if(goods != null && goods.getCategory2Id() != null){
+            String itemCat2 = itemCategoryMapper.selectByPrimaryKey(goods.getCategory2Id()).getName();
+            data.put("itemCat2",itemCat2);
+        }
+        if(goods != null && goods.getCategory3Id() != null){
+            String itemCat3 = itemCategoryMapper.selectByPrimaryKey(goods.getCategory3Id()).getName();
+            data.put("itemCat3",itemCat3);
+        }
+
+
+        data.put("goods",goods);
+        data.put("goodsDesc",goodsDesc);
+
+
+        //查询SKU，根据goodsId查询tb_item,返回itemList
+        ItemExample itemExample = new ItemExample();
+        ItemExample.Criteria criteria = itemExample.createCriteria();
+        //状态码为1
+        criteria.andStatusEqualTo("1");
+        //商品Id
+        criteria.andGoodsIdEqualTo(goodsId);
+        //按默认降序
+        List<Item> itemList = itemMapper.selectByExample(itemExample);
+        //转成JSON字符串
+        data.put("itemList",JSON.toJSONString(itemList));
+        return data;
     }
 
 }
