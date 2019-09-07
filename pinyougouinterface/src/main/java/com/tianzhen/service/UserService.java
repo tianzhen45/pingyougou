@@ -22,4 +22,9 @@ public interface UserService {
     User findById(Integer id);
 
     User findByUsername(String username);
+
+    boolean sendCode(String phone);
+
+    boolean checkSmsCode(String phone, String smsCode);
+
 }

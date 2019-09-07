@@ -22,10 +22,7 @@ public class TestMain {
         System.out.println(md5Hash.toString());
     }
 
-    @Test
-    public void testUserService(){
-        System.out.println(userService.findAll());
-    }
+
 
     @Test
     public void testBrandService(){
