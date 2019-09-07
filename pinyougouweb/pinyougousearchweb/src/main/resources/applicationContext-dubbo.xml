@@ -10,7 +10,7 @@
     <dubbo:application name="pinyougou-search-web"/>
     <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 
-    <dubbo:annotation package="com.tianzhen.search.web.controller"/>
+    <dubbo:annotation package="com.tianzhen.search.web"/>
 
 
 

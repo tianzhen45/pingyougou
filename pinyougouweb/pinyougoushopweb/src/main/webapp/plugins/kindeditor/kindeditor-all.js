@@ -5733,7 +5733,7 @@ _plugin('core', function(K) {
 	self.plugin.getSelectedCell = function() {
 		return self.cmd.commonAncestor('td');
 	};
-	_each(('prop,cellprop,colinsertleft,colinsertright,rowinsertabove,rowinsertbelow,rowmerge,colmerge,' +
+	_each(('props,cellprop,colinsertleft,colinsertright,rowinsertabove,rowinsertbelow,rowmerge,colmerge,' +
 	'rowsplit,colsplit,coldelete,rowdelete,insert,delete').split(','), function(i, val) {
 		var cond = _inArray(val, ['prop', 'delete']) < 0 ? self.plugin.getSelectedCell : self.plugin.getSelectedTable;
 		self.addContextmenu({

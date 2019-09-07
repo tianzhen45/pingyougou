@@ -10,7 +10,9 @@
   <artifactId>pinyougoushopweb</artifactId>
   <packaging>war</packaging>
 
-
+  <properties>
+    <port>9015</port>
+  </properties>
 
   <dependencies>
     <!-- 日志 -->
@@ -54,5 +56,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
     </dependency>
+
+    <!-- rocketmq-client -->
+    <dependency>
+      <groupId>org.apache.rocketmq</groupId>
+      <artifactId>rocketmq-client</artifactId>
+    </dependency>
+
   </dependencies>
 </project>

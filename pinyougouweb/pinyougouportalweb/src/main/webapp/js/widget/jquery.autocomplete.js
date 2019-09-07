@@ -2591,7 +2591,7 @@ $.widget( "ui.autocomplete", {
 	},
 
 	// Support: Chrome <=50
-	// We should be able to just use this.element.prop( "isContentEditable" )
+	// We should be able to just use this.element.props( "isContentEditable" )
 	// but hidden elements always report false in Chrome.
 	// https://code.google.com/p/chromium/issues/detail?id=313082
 	_isContentEditable: function( element ) {

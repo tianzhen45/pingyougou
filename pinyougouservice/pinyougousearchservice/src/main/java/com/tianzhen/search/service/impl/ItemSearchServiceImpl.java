@@ -2,7 +2,7 @@ package com.tianzhen.search.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
-import com.tianzhen.search.dao.EsItem;
+import com.tianzhen.pojo.EsItem;
 import com.tianzhen.search.dao.EsItemDao;
 import com.tianzhen.service.ItemSearchService;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +22,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.SearchResultMapper;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.DeleteQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 
@@ -236,5 +236,23 @@ public class ItemSearchServiceImpl implements ItemSearchService{
         data.put("totalPages",page.getTotalPages());
 
         return data;
+    }
+
+    @Override
+    public void saveOrUpdate(List<EsItem> esItems) {
+        esItemDao.saveAll(esItems);
+    }
+
+    @Override
+    public void delete(List<Long> ids) {
+        try{
+            DeleteQuery deleteQuery = new DeleteQuery();
+            deleteQuery.setIndex("pinyougou");
+            deleteQuery.setType("item");
+            deleteQuery.setQuery(QueryBuilders.termQuery("goodsId",ids));
+            esTemplate.delete(deleteQuery);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

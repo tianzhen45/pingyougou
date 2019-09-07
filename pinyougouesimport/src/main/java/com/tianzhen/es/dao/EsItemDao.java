@@ -1,6 +1,6 @@
 package com.tianzhen.es.dao;
 
-import com.tianzhen.es.EsItem;
+import com.tianzhen.pojo.EsItem;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 

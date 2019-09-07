@@ -7,7 +7,14 @@
     <version>1.0-SNAPSHOT</version> 
   </parent>  
   <modelVersion>4.0.0</modelVersion>  
-  <artifactId>pinyougou-manager-web</artifactId>  
+  <artifactId>pinyougou-manager-web</artifactId>
+
+
+  <properties>
+    <port>9009</port>
+  </properties>
+
+
   <!-- 配置依赖关系 -->  
   <packaging>war</packaging>
   <dependencies> 

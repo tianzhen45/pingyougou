@@ -9,34 +9,14 @@
 
     <dubbo:application name="pinyougou-manager-web"/>
     <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
-
-    <dubbo:annotation package="com.tianzhen.manager.controller"/>
+    <dubbo:annotation package="com.tianzhen.manager"/>
 
 
 
     <!--七牛配置-->
     <context:property-placeholder location="classpath*:qiniu.properties"/>
 
-    <!-- 开启组件扫描 -->
-    <context:component-scan
-            base-package="com.tianzhen.manager"/>
 
-    <!-- 开启MVC注解驱动 -->
-    <mvc:annotation-driven>
-        <!-- 配置消息转换 -->
-        <mvc:message-converters>
-            <!-- 配置用fastjson作为json处理框架 -->
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-                <!-- 配置支持的类型 -->
-                <property name="supportedMediaTypes"
-                          value="application/json;charset=UTF-8"/>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-
-
-    <!-- 配置静态资源用WEB容器默认的servlet来处理 -->
-    <mvc:default-servlet-handler/>
 
 
 </beans>

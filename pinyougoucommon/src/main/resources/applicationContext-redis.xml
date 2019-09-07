@@ -6,9 +6,9 @@
 
 
     <!-- ################ 配置Redis单机版 #################-->
-    <!-- 加载属性文件 -->
-    <context:property-placeholder
-            location="classpath:redis-config.properties"/>
+    <!--&lt;!&ndash; 加载属性文件 &ndash;&gt;-->
+    <!--<context:property-placeholder-->
+            <!--location="classpath:props/redis-config.properties"/>-->
 
     <!-- 配置连接工厂 -->
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">

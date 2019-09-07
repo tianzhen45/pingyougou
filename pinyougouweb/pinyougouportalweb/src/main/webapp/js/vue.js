@@ -436,7 +436,7 @@
 
     /**
      * Check if an attribute is reserved so that it cannot be used as a component
-     * prop. This is platform-dependent and may be overwritten.
+     * props. This is platform-dependent and may be overwritten.
      */
     isReservedAttr: no,
 
@@ -1644,7 +1644,7 @@
   }
 
   /**
-   * Get the default value of a prop.
+   * Get the default value of a props.
    */
   function getPropDefaultValue (vm, prop, key) {
     // no default, return undefined
@@ -1655,13 +1655,13 @@
     // warn against non-factory defaults for Object & Array
     if (isObject(def)) {
       warn(
-        'Invalid default value for prop "' + key + '": ' +
+        'Invalid default value for props "' + key + '": ' +
         'Props with type Object/Array must use a factory function ' +
         'to return the default value.',
         vm
       );
     }
-    // the raw prop value was also undefined from previous render,
+    // the raw props value was also undefined from previous render,
     // return previous default value to avoid unnecessary watcher trigger
     if (vm && vm.$options.propsData &&
       vm.$options.propsData[key] === undefined &&
@@ -1677,7 +1677,7 @@
   }
 
   /**
-   * Assert whether a prop is valid.
+   * Assert whether a props is valid.
    */
   function assertProp (
     prop,
@@ -1688,7 +1688,7 @@
   ) {
     if (prop.required && absent) {
       warn(
-        'Missing required prop: "' + name + '"',
+        'Missing required props: "' + name + '"',
         vm
       );
       return
@@ -1721,7 +1721,7 @@
     if (validator) {
       if (!validator(value)) {
         warn(
-          'Invalid prop: custom validator check failed for prop "' + name + '".',
+          'Invalid props: custom validator check failed for props "' + name + '".',
           vm
         );
       }
@@ -1780,7 +1780,7 @@
   }
 
   function getInvalidTypeMessage (name, value, expectedTypes) {
-    var message = "Invalid prop: type check failed for prop \"" + name + "\"." +
+    var message = "Invalid props: type check failed for props \"" + name + "\"." +
       " Expected " + (expectedTypes.map(capitalize).join(', '));
     var expectedType = expectedTypes[0];
     var receivedType = toRawType(value);
@@ -2294,7 +2294,7 @@
           ) {
             tip(
               "Prop \"" + keyInLowerCase + "\" is passed to component " +
-              (formatComponentName(tag || Ctor)) + ", but the declared prop name is" +
+              (formatComponentName(tag || Ctor)) + ", but the declared props name is" +
               " \"" + key + "\". " +
               "Note that HTML attributes are case-insensitive and camelCased " +
               "props need to use their kebab-case equivalents when using in-DOM " +
@@ -3313,7 +3313,7 @@
   }
 
   // transform component v-model info (value and callback) into
-  // prop and event handler respectively.
+  // props and event handler respectively.
   function transformModel (options, data) {
     var prop = (options.model && options.model.prop) || 'value';
     var event = (options.model && options.model.event) || 'input'
@@ -4645,7 +4645,7 @@
   function initProps (vm, propsOptions) {
     var propsData = vm.$options.propsData || {};
     var props = vm._props = {};
-    // cache prop keys so that future props updates can iterate using Array
+    // cache props keys so that future props updates can iterate using Array
     // instead of dynamic object key enumeration.
     var keys = vm.$options._propKeys = [];
     var isRoot = !vm.$parent;
@@ -4662,16 +4662,16 @@
         if (isReservedAttribute(hyphenatedKey) ||
             config.isReservedAttr(hyphenatedKey)) {
           warn(
-            ("\"" + hyphenatedKey + "\" is a reserved attribute and cannot be used as component prop."),
+            ("\"" + hyphenatedKey + "\" is a reserved attribute and cannot be used as component props."),
             vm
           );
         }
         defineReactive$$1(props, key, value, function () {
           if (!isRoot && !isUpdatingChildComponent) {
             warn(
-              "Avoid mutating a prop directly since the value will be " +
+              "Avoid mutating a props directly since the value will be " +
               "overwritten whenever the parent component re-renders. " +
-              "Instead, use a data or computed property based on the prop's " +
+              "Instead, use a data or computed property based on the props's " +
               "value. Prop being mutated: \"" + key + "\"",
               vm
             );
@@ -4720,8 +4720,8 @@
       }
       if (props && hasOwn(props, key)) {
         warn(
-          "The data property \"" + key + "\" is already declared as a prop. " +
-          "Use prop default value instead.",
+          "The data property \"" + key + "\" is already declared as a props. " +
+          "Use props default value instead.",
           vm
         );
       } else if (!isReserved(key)) {
@@ -4782,7 +4782,7 @@
         if (key in vm.$data) {
           warn(("The computed property \"" + key + "\" is already defined in data."), vm);
         } else if (vm.$options.props && key in vm.$options.props) {
-          warn(("The computed property \"" + key + "\" is already defined as a prop."), vm);
+          warn(("The computed property \"" + key + "\" is already defined as a props."), vm);
         }
       }
     }
@@ -4852,7 +4852,7 @@
         }
         if (props && hasOwn(props, key)) {
           warn(
-            ("Method \"" + key + "\" has already been defined as a prop."),
+            ("Method \"" + key + "\" has already been defined as a props."),
             vm
           );
         }
@@ -10273,7 +10273,7 @@
         el.hasBindings = true;
         // modifiers
         modifiers = parseModifiers(name.replace(dirRE, ''));
-        // support .foo shorthand syntax for the .prop modifier
+        // support .foo shorthand syntax for the .props modifier
         if (modifiers) {
           name = name.replace(modifierRE, '');
         }

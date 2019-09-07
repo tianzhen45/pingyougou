@@ -6,7 +6,11 @@
     <groupId>com.tianzhen</groupId>  
     <version>1.0-SNAPSHOT</version> 
   </parent>  
-  <modelVersion>4.0.0</modelVersion>  
+  <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+    <port>9010</port>
+  </properties>
   <artifactId>pinyougou-portal-web</artifactId>
   <packaging>war</packaging> 
 </project>

@@ -3,10 +3,10 @@ package com.tianzhen.es;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tianzhen.es.dao.EsItemDao;
 import com.tianzhen.mapper.ItemMapper;
+import com.tianzhen.pojo.EsItem;
 import com.tianzhen.pojo.Item;
 import com.tianzhen.pojo.ItemExample;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
