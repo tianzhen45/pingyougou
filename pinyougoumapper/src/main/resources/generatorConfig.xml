@@ -67,10 +67,10 @@
 
 
 
-        <table tableName="tb_item" domainObjectName="Item"
+        <table tableName="tb_order" domainObjectName="Order"
                enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false"
-               mapperName="ItemMapper"/>
+               enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"
+               mapperName="OrderMapper"/>
 
 
         <!-- mybatis插件的搭建 -->

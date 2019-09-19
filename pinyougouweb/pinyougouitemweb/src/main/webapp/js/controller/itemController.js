@@ -45,7 +45,22 @@ window.onload = function () {
                 }
             },
             addToCart:function () {
-                alert("sku商品id"+this.sku.id+",购买数量："+this.buyNum);
+               if(!isNaN(this.buyNum) || this.buyNum <=0){
+                   alert("请输入正确的购买数量");
+                   return
+               }
+               //发送跨域请求
+                axios.get("http://cart.pinyougou.com/cart/addCart?itemId="+vue.sku.id+"&num="+vue.buyNum,{"withCredentials":true})
+                    .then(function (response) {
+                        if(response.data){
+                            //跳转到购物页面
+                            location.href = "http://cart.pinyougou.com/cart.html";
+                        }else {
+                            alert("请求失败");
+                        }
+                    })
+
+                //alert("sku商品id"+this.sku.id+",购买数量："+this.buyNum);
             }
 
         },

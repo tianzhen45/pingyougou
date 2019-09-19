@@ -36,8 +36,9 @@ public class ContentServiceImpl implements ContentService{
     public void save(Content content) {
         try {
             contentMapper.insertSelective(content);
-
-            redisTemplate.delete("content");
+            
+            //更新后的分类广告列表缓存
+            deleteContentListInRedisByCategoryId(content.getCategoryId()+"");
         }catch (Exception ex){
             throw  new RuntimeException(ex);
         }
@@ -46,8 +47,16 @@ public class ContentServiceImpl implements ContentService{
     @Override
     public void update(Content content) {
         try {
+            Content oldContent = contentMapper.selectByPrimaryKey(content.getId());
+            
+            //如果删除了分类id,把之前分类广告列表缓存删除
+            if(!oldContent.getCategoryId().equals(content.getCategoryId())){
+                deleteContentListInRedisByCategoryId(oldContent.getCategoryId()+"");
+            }
+            //删除更新后的分类广告列表缓存
+            deleteContentListInRedisByCategoryId(content.getCategoryId()+"");
+            
             contentMapper.updateByPrimaryKeySelective(content);
-            redisTemplate.delete("content");
         }catch (Exception ex){
             throw  new RuntimeException(ex);
         }
@@ -57,7 +66,9 @@ public class ContentServiceImpl implements ContentService{
     public void delete(String id) {
         try {
             contentMapper.deleteByPrimaryKey(Long.valueOf(id));
-            redisTemplate.delete("content");
+            
+            //删除该分类广告的列表缓存
+            deleteContentListInRedisByCategoryId(contentMapper.selectByPrimaryKey(Long.valueOf(id)).getCategoryId()+"");
         }catch (Exception ex){
             throw  new RuntimeException(ex);
         }
@@ -70,11 +81,10 @@ public class ContentServiceImpl implements ContentService{
     public List<Content> findContentByCategoryId(String categoryId) {
         List<Content> contentList = null;
         try {
-            contentList = (List<Content>) redisTemplate.boundValueOps("content").get();
+            contentList = (List<Content>) redisTemplate.boundHashOps("content").get(categoryId);
             if(contentList != null && contentList.size() >0){
                 return contentList;
             }
-
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -82,14 +92,19 @@ public class ContentServiceImpl implements ContentService{
         ContentExample.Criteria criteria = contentExample.createCriteria();
         criteria.andCategoryIdEqualTo(Long.valueOf(categoryId));
         criteria.andStatusEqualTo("1");
+        contentExample.setOrderByClause("sort_order desc");
         contentList = contentMapper.selectByExample(contentExample);
 
         try{
             /** 存入Redis缓存 */
-            redisTemplate.boundValueOps("content").set(contentList);
+            redisTemplate.boundHashOps("content").put(categoryId,contentList);
         }catch (Exception e){
             e.printStackTrace();
         }
         return contentList;
+    }
+
+    public void deleteContentListInRedisByCategoryId(String categoryId){
+        redisTemplate.boundHashOps("content").delete(categoryId);
     }
 }

@@ -18,6 +18,8 @@
         <module>pinyougousearchservice</module>
         <module>pinyougousmsservice</module>
         <module>pinyougouuserservice</module>
+        <module>pinyougoucartservice</module>
+        <module>pinyougouorderservice</module>
     </modules>
 
     <properties>

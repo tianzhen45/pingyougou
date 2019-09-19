@@ -35,9 +35,9 @@
 
 
 
-    <!--<dubbo:application name="pinyougou-manager-web"/>-->
-    <!--<dubbo:registry protocol="zookeeper" address="localhost:2181"/>-->
+    <dubbo:application name="pinyougou-manager-web"/>
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 
-    <!--<dubbo:annotation package="com.tianzhen.manager.controller"/>-->
+    <dubbo:annotation package="com.tianzhen.manager.controller"/>
 
 </beans>

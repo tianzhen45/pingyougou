@@ -12,5 +12,14 @@
     <port>9010</port>
   </properties>
   <artifactId>pinyougou-portal-web</artifactId>
-  <packaging>war</packaging> 
+  <packaging>war</packaging>
+
+  <dependencies>
+    <!-- cas-client-core -->
+    <dependency>
+      <groupId>org.jasig.cas.client</groupId>
+      <artifactId>cas-client-core</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

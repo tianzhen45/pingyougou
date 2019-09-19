@@ -7,6 +7,7 @@ import com.tianzhen.service.BrandService;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,7 @@ public class BrandController {
     public List<Map<String, Object>> findAllByIdAndName(){
         List<Map<String, Object>> all = brandService.findAllByIdAndName();
         return all;
+
     }
 
 }

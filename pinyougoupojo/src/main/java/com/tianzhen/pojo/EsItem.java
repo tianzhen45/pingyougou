@@ -1,5 +1,6 @@
 package com.tianzhen.pojo;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
+@Data
 @Document(indexName = "pinyougou",type = "item")
 public class EsItem implements Serializable {
 
@@ -60,67 +62,6 @@ public class EsItem implements Serializable {
     // SKU商品规格选项(嵌套类型，多种规格)
     @Field(store = true, type = FieldType.Nested)
     private Map<String,String> spec;
-    public Map<String, String> getSpec() {
-        return spec;
-    }
-    public void setSpec(Map<String, String> spec) {
-        this.spec = spec;
-    }
 
 
-    /** setter and getter method */
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public Double getPrice() {
-        return price;
-    }
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
-    }
-    public Long getGoodsId() {
-        return goodsId;
-    }
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
-    }
-    public String getCategory() {
-        return category;
-    }
-    public void setCategory(String category) {
-        this.category = category;
-    }
-    public String getBrand() {
-        return brand;
-    }
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-    public String getSeller() {
-        return seller;
-    }
-    public void setSeller(String seller) {
-        this.seller = seller;
-    }
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
